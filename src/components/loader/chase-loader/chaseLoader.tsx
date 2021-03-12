@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import { rotate } from '../../../animations/animations';
-import { LoaderSize } from '../loaderTypes';
+import { Size } from '../../../types/common.types';
 
 const chaseDot = keyframes`
     80%, 100% { transform: rotate(360deg) };
@@ -57,29 +57,29 @@ const ChaseDot = styled.div`
 `;
 
 interface ChaseLoaderProps {
-    size: LoaderSize
-    color?: string,
+  size: Size,
+  color?: string,
 }
 
-const calculateSize = (size: LoaderSize) => {
-    switch (size) {
-        case LoaderSize.Small:
-            return '2em';
-        case LoaderSize.Medium:
-            return '3em';
-        case LoaderSize.Large:
-            return '4em';
-    }
+const calculateSize = (size: Size) => {
+  switch (size) {
+    case Size.Small:
+      return '3em';
+    case Size.Medium:
+      return '4.5em';
+    case Size.Large:
+      return '6em';
+  }
 };
 
 const ChaseLoader: React.FC<ChaseLoaderProps> = ({ color, size }) => {
-    const dots = ['1', '2', '3', '4', '5', '6'];
+  const dots = ['1', '2', '3', '4', '5', '6'];
 
-    return (
-        <StyledChaseLoader size={size}>
-            {dots.map((key) => <ChaseDot key={key} color={color} />)}
-        </StyledChaseLoader>   
-    )
+  return (
+    <StyledChaseLoader size={size}>
+      {dots.map((key) => <ChaseDot key={key} color={color} />)}
+    </StyledChaseLoader>
+  )
 };
 
 export default ChaseLoader;

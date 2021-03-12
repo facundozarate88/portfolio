@@ -4,7 +4,8 @@ import { rotate } from '../../animations/animations';
 import BounceLoader from './bounce-loader/bounceLoader';
 import ChaseLoader from './chase-loader/chaseLoader';
 import FoldingCubeLoader from './folding-cube-loader/foldingCubeLoader';
-import { LoaderProps, LoaderSize, LoaderType } from './loaderTypes';
+import { LoaderProps, LoaderType } from './loader.types';
+import { Size } from '../../types/common.types';
 
 const StyledLoader = styled.div<LoaderProps>`
     border: ${props => calculateBorderSize(props.size!)} solid #f2f2f2;
@@ -16,43 +17,43 @@ const StyledLoader = styled.div<LoaderProps>`
     animation: ${rotate} 1.5s linear infinite;
 `;
 
-const calculateSize = (size: LoaderSize) => {
-    switch (size) {
-        case LoaderSize.Small:
-            return '1em';
-        case LoaderSize.Medium:
-            return '2em';
-        case LoaderSize.Large:
-            return '3em';
-    }
+const calculateSize = (size: Size) => {
+  switch (size) {
+    case Size.Small:
+      return '2em';
+    case Size.Medium:
+      return '3em';
+    case Size.Large:
+      return '4em';
+  }
 };
 
-const calculateBorderSize = (size: LoaderSize) => {
-    switch (size) {
-        case LoaderSize.Small:
-            return '.3em';
-        case LoaderSize.Medium:
-            return '.5em';
-        case LoaderSize.Large:
-            return '.7em';
-    }
+const calculateBorderSize = (size: Size) => {
+  switch (size) {
+    case Size.Small:
+      return '.5em';
+    case Size.Medium:
+      return '1em';
+    case Size.Large:
+      return '1.5em';
+  }
 };
 
 const Loader: React.FC<LoaderProps> = ({
-    size = LoaderSize.Medium,
-    type = LoaderType.Default,
-    color = '#2f89d3'
+  size = Size.Medium,
+  type = LoaderType.Default,
+  color = '#2f89d3'
 }) => {
-    switch (type) {
-        case LoaderType.ChaseDot:
-            return <ChaseLoader size={size} color={color} />
-        case LoaderType.Bounce:
-            return <BounceLoader size={size} color={color} />
-        case LoaderType.FoldingCube:
-            return <FoldingCubeLoader size={size} color={color} />
-        default:
-            return <StyledLoader size={size} color={color}/>
-    }
+  switch (type) {
+    case LoaderType.ChaseDot:
+      return <ChaseLoader size={size} color={color} />
+    case LoaderType.Bounce:
+      return <BounceLoader size={size} color={color} />
+    case LoaderType.FoldingCube:
+      return <FoldingCubeLoader size={size} color={color} />
+    default:
+      return <StyledLoader size={size} color={color} />
+  }
 };
 
 export default Loader;

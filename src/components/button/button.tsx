@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-
-export interface ButtonProps {
-    label?: string;
-    primary?: boolean;
-    backgroundColor?: boolean;
-    size?: 'small' | 'medium' | 'large';
-    disabled?: boolean;
-    onClick?: () => void;
-};
+import ButtonProps, { ButtonSize } from './button.types';
 
 const StyledButton = styled.button<ButtonProps>`
-    font-size: .8rem;
+    font-size: ${props => {
+    switch (props.size) {
+      case 'small':
+        return '.6rem';
+      case 'medium':
+        return '.8rem';
+      case 'large':
+        return '1rem';
+    }
+  }};
     font-weight: 700;
     border: none;
     border-radius: 100px;
@@ -35,24 +36,25 @@ const StyledButton = styled.button<ButtonProps>`
 `
 
 const Button: React.FC<ButtonProps> = ({
-    label,
-    primary = false,
-    backgroundColor,
-    size = 'medium',
-    disabled = false,
+  label,
+  primary = false,
+  backgroundColor,
+  size = ButtonSize.Medium,
+  disabled = false,
 }) => {
 
-    function handleClick() {
-        console.log('You clicked THE button');
-    }
+  function handleClick() {
+    console.log('You clicked THE button');
+  }
 
-    return (
-        <StyledButton
-            type="button"
-            primary={primary}
-            onClick={handleClick}
-        >{label}</StyledButton>
-    );
+  return (
+    <StyledButton
+      type="button"
+      primary={primary}
+      size={size}
+      onClick={handleClick}
+    >{label}</StyledButton>
+  );
 }
 
 export default Button;

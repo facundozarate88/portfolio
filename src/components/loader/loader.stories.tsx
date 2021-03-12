@@ -1,25 +1,31 @@
 import React from 'react';
 import Loader from './loader';
-import { LoaderProps, LoaderSize } from './loaderTypes';
-import { Story , Meta} from '@storybook/react/types-6-0';
+import { LoaderProps, LoaderType } from './loader.types';
+import { Size } from '../../types/common.types';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
 export default {
-    title: 'Portfolio/Loader/Default',
-    component: Loader,
-    argTypes: {
-        size: {
-            control: {
-                type: 'select',
-                options: [
-                    LoaderSize.Small,
-                    LoaderSize.Medium,
-                    LoaderSize.Large,
-                ],
-            },
-        },
-        color: { control: 'color', defaultValue: '#2f89d3' }
+  title: 'Portfolio/Loader/Default',
+  component: Loader,
+  args: {
+    type: LoaderType.Default,
+  },
+  argTypes: {
+    size: {
+      control: {
+        type: 'select',
+        options: { ...Size },
+      },
     },
-    decorators: [(Story) => <div style={{ margin: '1em'}}><Story /></div>]
+    type: {
+      control: {
+        type: 'select',
+        options: { ...LoaderType }
+      }
+    },
+    color: { control: 'color', defaultValue: '#2f89d3' }
+  },
+  decorators: [(Story) => <div style={{ margin: '1em' }}><Story /></div>]
 } as Meta;
 
 const Template: Story<LoaderProps> = (args) => <Loader {...args} />;
@@ -28,18 +34,17 @@ const Template: Story<LoaderProps> = (args) => <Loader {...args} />;
 export const DefaultSpinnerSmall = Template.bind({});
 
 DefaultSpinnerSmall.args = {
-    size: LoaderSize.Small,
+  size: Size.Small,
 };
 
 export const DefaultSpinnerMedium = Template.bind({});
 
 DefaultSpinnerMedium.args = {
-    size: LoaderSize.Medium,
-    // { ...DefaultSpinnerSmall.args }
+  size: Size.Medium,
 };
 
 export const DefaultSpinnerLarge = Template.bind({});
 
 DefaultSpinnerLarge.args = {
-    size: LoaderSize.Large,
+  size: Size.Large,
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './components/button/button';
+import Carousel from './components/carousel/carousel';
 
 function App() {
   return (
-    <Button label="Continuar" primary></Button>    
+    <Carousel></Carousel>
   );
 }
 

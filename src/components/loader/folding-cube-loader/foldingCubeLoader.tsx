@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { LoaderSize } from '../loaderTypes';
+import { Size } from '../../../types/common.types';
 
 const fold = keyframes`
     0%, 10% {
@@ -13,7 +13,7 @@ const fold = keyframes`
     }
     90%, 100% {
         transform: perspective(140px) rotateY(180deg);
-        opacity: 0; 
+        opacity: 0;
     }
 `;
 
@@ -30,7 +30,7 @@ const StyledCube = styled.div<FoldingCubeLoaderProps>`
     height: 50%;
     position: relative;
 
-    transform: scale(1.1); 
+    transform: scale(1.1);
 
 
     &:before {
@@ -60,7 +60,7 @@ const StyledCube = styled.div<FoldingCubeLoaderProps>`
             animation-delay: .6s;
         }
     }
-    
+
     &:nth-child(3) {
         transform: scale(1.1) rotateZ(270deg);
 
@@ -71,28 +71,28 @@ const StyledCube = styled.div<FoldingCubeLoaderProps>`
 `;
 
 interface FoldingCubeLoaderProps {
-    size: LoaderSize,
-    color?: string,
+  size: Size,
+  color?: string,
 }
 
-const calculateSize = (size: LoaderSize) => {
-    switch (size) {
-        case LoaderSize.Small:
-            return '2em';
-        case LoaderSize.Medium:
-            return '3em';
-        case LoaderSize.Large:
-            return '4em';
-    }
+const calculateSize = (size: Size) => {
+  switch (size) {
+    case Size.Small:
+      return '2em';
+    case Size.Medium:
+      return '3em';
+    case Size.Large:
+      return '4em';
+  }
 };
 
 const FoldingCubeLoader: React.FC<FoldingCubeLoaderProps> = ({ size, color }) => {
-    const cubes = ['1', '2', '3', '4'];
-    return (
-        <StyledFoldingCube size={size}>
-            {cubes.map(key => <StyledCube key={key} size={size} color={color} />)}
-        </StyledFoldingCube>
-    )
+  const cubes = ['1', '2', '3', '4'];
+  return (
+    <StyledFoldingCube size={size}>
+      {cubes.map(key => <StyledCube key={key} size={size} color={color} />)}
+    </StyledFoldingCube>
+  )
 };
 
 export default FoldingCubeLoader;
