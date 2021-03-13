@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
+import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 
@@ -16,17 +16,17 @@ const StyledSwiper = styled(Swiper)`
         list-style: none;
     }
     .swiper-pagination {
-        bottom: 35px;
+        bottom: 25px;
     }
 `;
 
-const Carousel: React.FC = () => {
+const Carousel: React.FC<SwiperOptions> = (props) => {
   const slides = [];
 
   for (let i = 0; i < 10; i++) {
     slides.push(
       <SwiperSlide key={`slide-${i}`} tag="li">
-        <img src={`https://picsum.photos/id/${i + 1}/500/300`} alt={`Slide ${i}`} />
+        <img src={`https://picsum.photos/id/${i+ 1}/500/300`} alt={`Slide ${i}`} />
       </SwiperSlide>
     );
 
@@ -34,11 +34,9 @@ const Carousel: React.FC = () => {
 
   return (
     <StyledSwiper
-      id="main-swiper"
       tag="section"
       wrapperTag="ul"
-      navigation
-      pagination
+      {...props}
     >
       {slides}
     </StyledSwiper>

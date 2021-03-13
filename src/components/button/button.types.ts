@@ -1,14 +1,12 @@
-export default interface ButtonProps {
+import { Size } from "../../types/common.types";
+
+interface StyledComponents {
+  theme?: any;
+}
+export default interface ButtonProps extends StyledComponents {
   label?: string;
   primary?: boolean;
-  backgroundColor?: boolean;
-  size?: ButtonSize;
+  size?: Size;
   disabled?: boolean;
   onClick?: () => void;
 };
-
-export enum ButtonSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large'
-}

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import Button from './button';
-import ButtonProps, { ButtonSize } from './button.types';
+import ButtonProps from './button.types';
+import { Size } from '../../types/common.types';
 
 export default {
   title: 'Portfolio/Button',
@@ -9,17 +10,14 @@ export default {
   args: {
     label: 'Button',
     primary: true,
-    size: ButtonSize.Medium
+    disabled: false,
+    size: Size.Medium
   },
   argTypes: {
     size: {
       control: {
         type: 'select',
-        options: [
-          ButtonSize.Small,
-          ButtonSize.Medium,
-          ButtonSize.Large
-        ],
+        options: { ...Size },
       },
     },
   },
@@ -31,14 +29,17 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-  label: 'Button',
   primary: true,
-  size: ButtonSize.Medium,
-}
+};
 
 export const Secondary = Template.bind({});
 
 Secondary.args = {
-  label: 'Button',
   primary: false,
-}
+};
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+  disabled: true,
+};
